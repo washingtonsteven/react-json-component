@@ -12,7 +12,7 @@ class JSONComponent extends Component {
       });
     }
 
-    const componentMap = jsonSrc.componentMap || {};
+    const componentMap = this.props.componentMap || {};
     const elementType = jsonSrc.type ? ( componentMap[jsonSrc.type] || jsonSrc.type ) : 'div';
 
     return React.createElement(

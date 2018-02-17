@@ -19,6 +19,15 @@ const componentJson = {
 ReactDOM.render(<JSONComponent jsonSrc={componentJson} />, document.getElementById('root'));
 ```
 
+## Props
+
+```javascript
+{
+  jsonSrc: Object
+  componentMap: Object
+}
+```
+
 ## JSON Properties
 
 ```javascript
@@ -26,7 +35,6 @@ ReactDOM.render(<JSONComponent jsonSrc={componentJson} />, document.getElementBy
   type: String | Function
   props: Object
   children: String | Array | Function
-  componentMap: Object
 }
 ```
 
@@ -71,12 +79,10 @@ import ReactDOM from 'react-dom';
 import TableComponent from './TableComponent';
 import JSONComponent from './JSONComponent';
 
-import componentJSON from 'component.json';
-componentJSON.componentMap = {
-  'TableComponent':TableComponent
-}
+import jsonSrc from 'component.json';
 
-ReactDOM.render(<JSONComponent jsonSrc={componentJSON} />, document.getElementById('root'));
+const props = { jsonSrc, componentMap:{ TableComponent } };
+ReactDOM.render(<JSONComponent {...props} />, document.getElementById('root'));
 ```
 
 ## Why?

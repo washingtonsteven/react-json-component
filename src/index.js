@@ -5,14 +5,14 @@ import MagicComponent from './sample/MagicComponent';
 import TableComponent from './sample/TableComponent';
 import tableJson from './sample/table.json';
 
-const sampleComponent = {
+const jsonSrc = {
   type:'div',
   props:{
     style:{
       textAlign:"center",
       fontSize:"24px",
       fontFamily:"sans-serif",
-      color:"#ffb700"
+      color:"#007bff"
     }
   },
   children:[
@@ -21,8 +21,9 @@ const sampleComponent = {
     { type:'div', props:{ style:{ color:"#f00", fontWeight:"bold" } }, children:"me too" },
     { render:() => <button>Cool ass button</button> },
     { type:MagicComponent },
-    { ...tableJson, componentMap:{ "TableComponent":TableComponent } }
+    tableJson
   ]
 }
 
-ReactDOM.render(<JSONComponent jsonSrc={sampleComponent} />, document.getElementById('root'));
+const props = { jsonSrc, componentMap:{ TableComponent } };
+ReactDOM.render(<JSONComponent {...props} />, document.getElementById('root'));
