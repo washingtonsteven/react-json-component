@@ -78,3 +78,7 @@ componentJSON.componentMap = {
 
 ReactDOM.render(<JSONComponent jsonSrc={componentJSON} />, document.getElementById('root'));
 ```
+
+## Why?
+
+Because I am not a coward.
