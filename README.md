@@ -1,5 +1,7 @@
 # react-json-component
 
+_Inspired by [this tweet](https://twitter.com/NTulswani/status/964421799399141376)_
+
 ## Usage
 
 ```javascript
