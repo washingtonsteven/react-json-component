@@ -22,9 +22,7 @@
     },
     "style":{
       "color":"#000000",
-      "border":"solid 1px black",
       "borderCollapse":"collapse",
-      "padding":"15px",
       "margin":"35px auto"
     }
   }
