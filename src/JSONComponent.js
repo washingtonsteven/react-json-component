@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 
 class JSONComponent extends Component {
   renderJSON(jsonSrc) {
+    if (typeof jsonSrc === 'function') return jsonSrc(jsonSrc.props || {});
     if (jsonSrc.render && typeof jsonSrc.render === 'function') return jsonSrc.render(jsonSrc.props || {});
 
     if (typeof jsonSrc === 'string') return jsonSrc;
@@ -17,8 +18,8 @@ class JSONComponent extends Component {
 
     return React.createElement(
       elementType,
-      {...jsonSrc.props},
-      this.renderJSON(jsonSrc.children || "")
+      jsonSrc.props,
+      this.renderJSON(jsonSrc.children || (jsonSrc.props && jsonSrc.props.children) || "")
     );
   }
 
