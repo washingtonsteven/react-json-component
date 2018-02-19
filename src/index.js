@@ -36,21 +36,6 @@ let jsonSrc = {
     tableJson
   ]
 }
-// TODO: list example?
-
-// console.log(JSON.stringify(jsonSrc));
-
-// const a = {};
-
-// a.children = a;
-
-
-// jsonSrc = {
-//   children:a
-// }
-
-
-// console.log(JSON.stringify(jsonSrc)); // Throws error, catching a circular struct, don't try any further
 
 const props = { jsonSrc, componentMap:{ TableComponent } };
 ReactDOM.render(<JSONComponent {...props} />, document.getElementById('root'));

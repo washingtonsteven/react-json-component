@@ -23,8 +23,26 @@ class JSONComponent extends Component {
     );
   }
 
+ errored(e) {
+   const errorStyle = { fontFamily:"monospace", backgroundColor:"#ffb700", color:"#f00" }
+   return (
+     <div style={errorStyle}>
+      There was a problem rendering this JSONComponent:
+      <pre>
+        {e ? e.toString() : 'Error info not available'}
+      </pre>
+     </div>
+   )
+ }
+
   render() {
     const { jsonSrc } = this.props;
+
+    try {
+      JSON.stringify(jsonSrc);
+    } catch(e) {
+      return this.errored(e);
+    }
 
     return this.renderJSON(jsonSrc);
   }
