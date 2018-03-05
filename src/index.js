@@ -1,41 +1,57 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import JSONComponent from './JSONComponent';
-import MagicComponent from './sample/MagicComponent';
-import TableComponent from './sample/TableComponent';
-import tableJson from './sample/table.json';
+import React, { Component, Fragment } from 'react';
 
-const buttonStyle = {
-  backgroundColor:"#007bff",
-  color:"#fff",
-  fontSize:"36px",
-  border:"none",
-  cursor:"pointer",
-  margin:"15px auto",
-  padding: "10px 25px"
-};
+class JSONComponent extends Component {
+  renderJSON(jsonSrc) {
+    if (typeof jsonSrc === 'function') return jsonSrc(jsonSrc.props || {});
+    if (jsonSrc.render && typeof jsonSrc.render === 'function') return jsonSrc.render(jsonSrc.props || {});
 
-let jsonSrc = {
-  type:'div',
-  props:{
-    style:{
-      textAlign:"center",
-      fontSize:"24px",
-      fontFamily:"sans-serif",
-      color:"#007bff"
+    if (typeof jsonSrc === 'string') return jsonSrc;
+
+    if (Array.isArray(jsonSrc)) {
+      return jsonSrc.map(( c, i ) => {
+        return <Fragment key={i}>{this.renderJSON(c)}</Fragment>
+      });
     }
-  },
-  children:[
-    "this is a sample!",
-    "so is this one!",
-    { type:'div', props:{ style:{ color:"#f00", fontWeight:"bold" } }, children:"me too" },
-    { render:() => <button style={buttonStyle}>Cool ass button</button> },
-    () => <div><input type="text" placeholder="direct function" /></div>,
-    <MagicComponent>Magic children</MagicComponent>,
-    { type:MagicComponent },
-    tableJson
-  ]
+
+    const componentMap = this.props.componentMap || {};
+    const elementType = jsonSrc.type ? ( componentMap[jsonSrc.type] || jsonSrc.type ) : 'div';
+
+    return React.createElement(
+      elementType,
+      jsonSrc.props,
+      this.renderJSON(jsonSrc.children || (jsonSrc.props && jsonSrc.props.children) || "")
+    );
+  }
+
+  componentDidCatch(e) {
+    this.errored(e);
+  }
+
+ errored(e) {
+   const errorStyle = { fontFamily:"monospace", backgroundColor:"#ffb700", color:"#f00" }
+   return (
+     <div style={errorStyle}>
+      There was a problem rendering this JSONComponent:
+      <pre>
+        {e ? e.toString() : 'Error info not available'}
+      </pre>
+     </div>
+   )
+ }
+
+  render() {
+    const { jsonSrc } = this.props;
+
+    if (!jsonSrc) { return this.errored('JSONComponent: Didn\'t receive a proper `jsonSrc` prop'); }
+
+    try {
+      JSON.stringify(jsonSrc);
+    } catch(e) {
+      return this.errored(e);
+    }
+
+    return this.renderJSON(jsonSrc);
+  }
 }
 
-const props = { jsonSrc, componentMap:{ TableComponent } };
-ReactDOM.render(<JSONComponent {...props} />, document.getElementById('root'));
+export default JSONComponent;
