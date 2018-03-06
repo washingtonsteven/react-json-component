@@ -92,9 +92,15 @@ ReactDOM.render(<JSONComponent {...props} />, document.getElementById('root'));
 
 Check out the sample app (scaffolded with [Create React App](https://github.com/facebook/create-react-app)):
 
-1. `cd react-json-component-sample`
-2. `yarn install`
-3. `yarn start`
+1. `cd react-json-component`
+    - If `react-json-component` isn't already available in `node-modules`
+        <ol style="list-style-type:lower-alpha">
+          <li><code>npm link</code></li>
+          <li><code>cd react-json-component-sample</code></li>
+          <li><code>npm link react-json-component</code></li>
+        </ol>
+5. `yarn install`
+6. `yarn start`
 
 View [`./react-json-component-sample/src/index.js`](react-json-component-sample/src/index.js) for a number of different ways to define your component object (in JS and JSON)
 

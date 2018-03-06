@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import JSONComponent from './JSONComponent';
+import JSONComponent from 'react-json-component';
+
 import MagicComponent from './sample/MagicComponent';
 import TableComponent from './sample/TableComponent';
 import tableJson from './sample/table.json';
