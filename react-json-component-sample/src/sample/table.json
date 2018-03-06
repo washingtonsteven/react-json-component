@@ -1,0 +1,29 @@
+{
+  "type":"TableComponent",
+  "props":{
+    "data":{
+      "head":[
+        ["Name", "Age", "Is a Unicorn"]
+      ],
+      "body":[
+        ["Sally", "43", "no"],
+        ["Kirby", "8", "no"],
+        ["Johnny", "137", "yes"],
+        ["Rickie", "~", "??"]
+      ]
+    },
+    "cellStyle":{
+      "border":"solid 1px red",
+      "padding":"5px"
+    },
+    "theadStyle":{
+      "backgroundColor":"#eeeeee",
+      "fontWeight":"bold"
+    },
+    "style":{
+      "color":"#000000",
+      "borderCollapse":"collapse",
+      "margin":"35px auto"
+    }
+  }
+}

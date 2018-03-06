@@ -88,6 +88,16 @@ const props = { jsonSrc, componentMap:{ TableComponent } };
 ReactDOM.render(<JSONComponent {...props} />, document.getElementById('root'));
 ```
 
+## Examples
+
+Check out the sample app (scaffolded with [Create React App](https://github.com/facebook/create-react-app)):
+
+1. `cd react-json-component-sample`
+2. `yarn install`
+3. `yarn start`
+
+View [`./react-json-component-sample/src/index.js`]('react-json-component-sample/src/index.js') for a number of different ways to define your component object (in JS and JSON)
+
 ## Why?
 
 Because I am not a coward.
